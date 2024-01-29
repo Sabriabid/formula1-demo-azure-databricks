@@ -97,4 +97,17 @@ display(construcor_final_df)
 
 # COMMAND ----------
 
+display(construcor_final_df)
+
+# COMMAND ----------
+
+construcor_final_df.write.mode("overwrite").parquet("/mnt/raw/processed/constructors")
+
+# COMMAND ----------
+
+# MAGIC %fs 
+# MAGIC ls /mnt/raw/processed/constructors
+
+# COMMAND ----------
+
 
