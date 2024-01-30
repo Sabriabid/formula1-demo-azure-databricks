@@ -27,4 +27,39 @@ drivers_df = spark.read \
 
 # COMMAND ----------
 
+drivers_df.printSchema()
+
+# COMMAND ----------
+
+display(drivers_df)
+
+# COMMAND ----------
+
+from pyspark.sql.functions import col, concat, current_timestamp, lit
+
+# COMMAND ----------
+
+drivers_with_columns_df = drivers_df.withColumnRenamed("driverId", "driver_id") \
+                                    .withColumnRenamed("driverRef", "driver_ref") \
+                                    .withColumn("ingestion_date", current_timestamp()) \
+                                    .withColumn("name", concat(col("name.forename"), lit(" "), concat("name.surname")))
+
+# COMMAND ----------
+
+display(drivers_with_columns_df)
+
+# COMMAND ----------
+
+drivers_final_df = drivers_with_columns_df.drop("url")
+
+# COMMAND ----------
+
+drivers_final_df.write.mode("overwrite").parquet("/mnt/raw/processed/drivers")
+
+# COMMAND ----------
+
+display(spark.read.parquet("/mnt/raw/processed/drivers"))
+
+# COMMAND ----------
+
 
