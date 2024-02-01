@@ -4,6 +4,19 @@
 
 # COMMAND ----------
 
+# MAGIC %run "../includes/configuration"
+# MAGIC
+
+# COMMAND ----------
+
+# MAGIC %run "../includes/common_functions"
+
+# COMMAND ----------
+
+raw_folder_path
+
+# COMMAND ----------
+
 display(dbutils.fs.mounts())
 
 # COMMAND ----------
@@ -74,7 +87,9 @@ display(circuits_renamed_df)
 # COMMAND ----------
 
 from pyspark.sql.functions import current_timestamp
-circuits_final_df = circuits_renamed_df.withColumn("ingestion_date", current_timestamp())
+#circuits_final_df = circuits_renamed_df.withColumn("ingestion_date", current_timestamp()) on peut remplacer cela par la fonction add_ingestion_date qu'on a créé dans un autre notebook
+
+circuits_final_df = add_ingestion_date(circuits_renamed_df)
 
 # COMMAND ----------
 
@@ -96,7 +111,7 @@ circuits_final_df.write.mode("overwrite").parquet("/mnt/processed/circuits")
 
 # COMMAND ----------
 
-df = spark.read.parquet("/mnt/processed/circuits")
+df = spark.read.parquet(f"{processed_folder_path}/circuits")
 display(df)
 
 # COMMAND ----------

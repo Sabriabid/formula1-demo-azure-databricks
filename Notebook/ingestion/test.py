@@ -1,49 +1,4 @@
 # Databricks notebook source
-# MAGIC %md
-# MAGIC Ingest constructors.json file
-
-# COMMAND ----------
-
-# MAGIC %sh
-# MAGIC /databricks/python/bin/pip install databricks-cli
-# MAGIC
-
-# COMMAND ----------
-
-# MAGIC %sh
-# MAGIC databricks --version
-# MAGIC
-
-# COMMAND ----------
-
-# MAGIC %sh
-# MAGIC /databricks/python/bin/pip install databricks-cli
-# MAGIC
-
-# COMMAND ----------
-
-# MAGIC %sh
-# MAGIC databricks configure
-# MAGIC
-
-# COMMAND ----------
-
-# MAGIC %sh
-# MAGIC /databricks/python3/bin/databricks configure
-# MAGIC
-
-# COMMAND ----------
-
-# MAGIC %sh
-# MAGIC databricks secrets list-scopes
-# MAGIC
-
-# COMMAND ----------
-
-
-
-# COMMAND ----------
-
 
 
 # COMMAND ----------
